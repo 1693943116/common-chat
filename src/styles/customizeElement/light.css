@@ -1,0 +1,33 @@
+@import url('element-plus/dist/index.css');
+
+/* 亮色定制化 - 绿色主题 */
+:root {
+  /* 主色 */
+  --el-color-primary: #4caf50 !important;
+  --el-color-primary-light-3: #81c784 !important;
+  --el-color-primary-light-5: #a5d6a7 !important;
+  --el-color-primary-light-7: #c8e6c9 !important;
+  --el-color-primary-light-9: #e8f5e9 !important;
+  --el-color-primary-dark-2: #388e3c !important;
+
+  /* 辅助色 */
+  --el-color-success: #66bb6a !important;
+  --el-color-warning: #ffc107 !important;
+  --el-color-danger: #f44336 !important;
+  --el-color-info: #78909c !important;
+
+  /* 文字颜色 */
+  --el-text-color-primary: #2c3e50 !important;
+  --el-text-color-regular: #5e6d82 !important;
+  --el-text-color-secondary: #8492a6 !important;
+  --el-text-color-placeholder: #b4c0d3 !important;
+
+  /* 边框颜色 */
+  --el-border-color: #dcdfe6 !important;
+  --el-border-color-light: #e4e7ed !important;
+
+  /* 背景颜色 */
+  --el-bg-color: #ffffff !important;
+  --el-bg-color-page: #f5f7fa !important;
+  --el-bg-color-overlay: #ffffff !important;
+}

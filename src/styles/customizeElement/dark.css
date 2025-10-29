@@ -1,0 +1,33 @@
+@import 'element-plus/theme-chalk/dark/css-vars.css';
+
+/* 暗黑模式定制化 - 绿色主题 */
+html.dark {
+  /* 主色 */
+  --el-color-primary: #66bb6a !important;
+  --el-color-primary-light-3: #81c784 !important;
+  --el-color-primary-light-5: #a5d6a7 !important;
+  --el-color-primary-light-7: #c8e6c9 !important;
+  --el-color-primary-light-9: #e8f5e9 !important;
+  --el-color-primary-dark-2: #43a047 !important;
+
+  /* 辅助色 */
+  --el-color-success: #81c784 !important;
+  --el-color-warning: #ffd54f !important;
+  --el-color-danger: #e57373 !important;
+  --el-color-info: #90a4ae !important;
+
+  /* 文字颜色 */
+  --el-text-color-primary: #e0e0e0 !important;
+  --el-text-color-regular: #b0b0b0 !important;
+  --el-text-color-secondary: #909399 !important;
+  --el-text-color-placeholder: #606266 !important;
+
+  /* 边框颜色 */
+  --el-border-color: #4c4d4f !important;
+  --el-border-color-light: #363637 !important;
+
+  /* 背景颜色 */
+  --el-bg-color: #141414 !important;
+  --el-bg-color-page: #0a0a0a !important;
+  --el-bg-color-overlay: #1d1e1f !important;
+}
