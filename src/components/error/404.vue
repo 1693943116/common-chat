@@ -1,44 +1,10 @@
 <template>
-  <div class="error-page">
-    <div class="error-code">404</div>
-    <div class="error-desc">抱歉，您访问的页面不存在</div>
-    <div class="error-action">
-      <el-button type="primary" @click="goHome">返回首页</el-button>
-    </div>
-  </div>
+  <el-result icon="error" title="404" sub-title="您访问的页面不存在">
+    <template #extra>
+      <el-button type="primary">返回上一页</el-button>
+    </template>
+  </el-result>
 </template>
-
-<script setup lang="ts">
-import { useRouter } from 'vue-router'
-
-const router = useRouter()
-
-const goHome = () => {
-  router.push('/')
-}
+<script lang="ts" setup>
+import { ElResult, ElButton } from 'element-plus'
 </script>
-
-<style scoped>
-.error-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
-
-.error-code {
-  font-size: 120px;
-  font-weight: bold;
-  color: #409eff;
-}
-
-.error-desc {
-  font-size: 24px;
-  margin: 20px 0 30px;
-}
-
-.error-action {
-  margin-top: 20px;
-}
-</style>

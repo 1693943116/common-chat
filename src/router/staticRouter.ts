@@ -10,14 +10,6 @@ export const staticRouter: RouteRecordRaw[] = [
     },
   },
   {
-    path: '/error',
-    name: 'Error',
-    component: () => import('@/components/error/error.vue'),
-    meta: {
-      title: '系统错误',
-    },
-  },
-  {
     path: '/:pathMatch(.*)*',
     component: () => import('@/components/error/404.vue'),
     meta: {

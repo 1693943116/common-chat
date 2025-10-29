@@ -7,6 +7,6 @@ declare module 'vue-router' {
     transition?: string
     keepalive?: boolean
     requiresAuth?: string[]
-    [key: string]: any
+    [key: string]: unknown
   }
 }

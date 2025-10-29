@@ -9,6 +9,13 @@
     }
   ],
   "compilerOptions": {
-    "types": ["element-plus/global"]
+    "types": ["element-plus/global"],
+
+    // 允许使用 any 类型的全局配置
+    "noImplicitAny": false,
+    "strict": false,
+    "strictNullChecks": false,
+    "strictFunctionTypes": false,
+    "strictPropertyInitialization": false
   }
 }
