@@ -1,6 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router'
 
-export const routes: RouteRecordRaw[] = [
+export const staticRouter: RouteRecordRaw[] = [
   {
     path: '/401',
     name: '401',
@@ -17,10 +17,8 @@ export const routes: RouteRecordRaw[] = [
       title: '系统错误',
     },
   },
-  // 将匹配所有路径并重定向到404页面
   {
     path: '/:pathMatch(.*)*',
-
     component: () => import('@/components/error/404.vue'),
     meta: {
       title: '404',
