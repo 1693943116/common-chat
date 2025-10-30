@@ -12,7 +12,7 @@
   <div>
     <el-icon><Plus /></el-icon>
     <el-icon><Sunny /></el-icon>
-    <Icon name="jiaotan"></Icon>
+    <Icon name="SoldOut"></Icon>
   </div>
 </template>
 

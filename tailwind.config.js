@@ -7,9 +7,6 @@ import scrollbar from 'tailwindcss-scrollbar'
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: 'selector',
-  corePlugins: {
-    preflight: false,
-  },
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
     extend: {

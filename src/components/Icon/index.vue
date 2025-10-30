@@ -1,5 +1,8 @@
 <template>
-  <component :is="icon" v-if="isElementIcon" :size="size" :color="color" :class="[customClass]" />
+  <ElIcon v-if="isElementIcon" :size="size" :color="color" :class="[customClass]">
+    <component :is="icon" />
+  </ElIcon>
+
   <svg v-else :class="[customClass]" aria-hidden="true" :style="svgStyle">
     <use :xlink:href="`#icon-${name}`" />
   </svg>
@@ -7,6 +10,7 @@
 
 <script setup lang="ts">
 import { computed, onMounted } from 'vue'
+import { ElIcon } from 'element-plus'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
 defineOptions({

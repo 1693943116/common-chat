@@ -5,7 +5,7 @@
       mode="out-in"
       appear
     >
-      <div>
+      <div class="h-full w-full">
         <keep-alive :include="cacheStore.cachedPages" :max="10">
           <component :is="Component" :key="route.fullPath" />
         </keep-alive>

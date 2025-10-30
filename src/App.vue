@@ -1,6 +1,6 @@
 <template>
   <ErrorBoundary>
-    <el-config-provider :locale="zhCn">
+    <el-config-provider :locale="zhCn" size="small">
       <RouterViewPro />
     </el-config-provider>
   </ErrorBoundary>
