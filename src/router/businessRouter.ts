@@ -4,10 +4,18 @@ export const businessRouter: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'layout',
-    component: () => import('@/components/Error/401.vue'),
+    component: () => import('@/layout/adminLayout/index.vue'),
     meta: {
-      title: '401',
+      title: 'layout管理系统',
     },
+    children: [
+      {
+        path: '/chat',
+        name: 'chat',
+        component: () => import('@/views/chat/index.vue'),
+        meta: { title: '聊天' },
+      },
+    ],
   },
   {
     path: '/chat',

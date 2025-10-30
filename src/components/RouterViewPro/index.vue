@@ -5,9 +5,11 @@
       mode="out-in"
       appear
     >
-      <keep-alive :include="cacheStore.cachedPages" :max="10">
-        <component :is="Component" :key="route.fullPath" />
-      </keep-alive>
+      <div>
+        <keep-alive :include="cacheStore.cachedPages" :max="10">
+          <component :is="Component" :key="route.fullPath" />
+        </keep-alive>
+      </div>
     </transition>
   </router-view>
 </template>

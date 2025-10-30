@@ -1,75 +1,73 @@
 <template>
-  <div>
-    <slot v-if="!hasError"></slot>
-    <div v-else class="flex min-h-[400px] w-full flex-col items-center justify-center">
-      <el-result
-        :icon="errorSeverity === 'critical' ? 'error' : 'warning'"
-        :title="errorTitle"
-        :sub-title="errorMessage"
-      >
-        <template #icon>
-          <div class="mb-6 flex justify-center">
-            <el-icon
-              :class="errorSeverity === 'critical' ? 'text-red-500' : 'text-yellow-500'"
-              class="text-8xl"
-            >
-              <component :is="errorIcon" />
-            </el-icon>
-          </div>
-        </template>
-        <template #extra>
-          <div class="flex flex-col items-center gap-4 sm:flex-row">
-            <el-button type="primary" @click="resetError" :loading="isRetrying">
-              <el-icon class="mr-2"><RefreshRight /></el-icon>
-              {{ retryText }}
-            </el-button>
-            <el-button v-if="showReportButton" type="info" @click="reportError">
-              <el-icon class="mr-2"><Warning /></el-icon>
-              {{ reportErrorText }}
-            </el-button>
-            <el-button v-if="showBackButton" @click="goBack">
-              <el-icon class="mr-2"><Back /></el-icon>
-              {{ backText }}
-            </el-button>
-          </div>
-        </template>
-      </el-result>
+  <slot v-if="!hasError"></slot>
+  <div v-else class="flex min-h-[400px] w-full flex-col items-center justify-center">
+    <el-result
+      :icon="errorSeverity === 'critical' ? 'error' : 'warning'"
+      :title="errorTitle"
+      :sub-title="errorMessage"
+    >
+      <template #icon>
+        <div class="mb-6 flex justify-center">
+          <el-icon
+            :class="errorSeverity === 'critical' ? 'text-red-500' : 'text-yellow-500'"
+            class="text-8xl"
+          >
+            <component :is="errorIcon" />
+          </el-icon>
+        </div>
+      </template>
+      <template #extra>
+        <div class="flex flex-col items-center gap-4 sm:flex-row">
+          <el-button type="primary" @click="resetError" :loading="isRetrying">
+            <el-icon class="mr-2"><RefreshRight /></el-icon>
+            {{ retryText }}
+          </el-button>
+          <el-button v-if="showReportButton" type="info" @click="reportError">
+            <el-icon class="mr-2"><Warning /></el-icon>
+            {{ reportErrorText }}
+          </el-button>
+          <el-button v-if="showBackButton" @click="goBack">
+            <el-icon class="mr-2"><Back /></el-icon>
+            {{ backText }}
+          </el-button>
+        </div>
+      </template>
+    </el-result>
 
-      <div v-if="showDetails && errorDetails" class="mt-6 w-full max-w-3xl">
-        <el-collapse v-model="activeCollapse">
-          <el-collapse-item name="details">
-            <template #title>
-              <div class="flex items-center">
-                <el-icon class="mr-2"><InfoFilled /></el-icon>
-                <span>技术详情</span>
-              </div>
-            </template>
-            <div class="error-details rounded bg-gray-50 p-4 dark:bg-gray-800">
-              <h4 class="mb-2 font-medium">错误信息</h4>
+    <div v-if="showDetails && errorDetails" class="mt-6 w-full max-w-3xl">
+      <el-collapse v-model="activeCollapse">
+        <el-collapse-item name="details">
+          <template #title>
+            <div class="flex items-center">
+              <el-icon class="mr-2"><InfoFilled /></el-icon>
+              <span>技术详情</span>
+            </div>
+          </template>
+          <div class="error-details rounded bg-gray-50 p-4 dark:bg-gray-800">
+            <h4 class="mb-2 font-medium">错误信息</h4>
+            <pre
+              class="mb-4 overflow-auto rounded border border-gray-200 bg-gray-100 p-2 text-sm dark:border-gray-700 dark:bg-gray-900"
+              >{{ errorDetails.message }}</pre
+            >
+
+            <template v-if="errorDetails.stack">
+              <h4 class="mb-2 font-medium">堆栈跟踪</h4>
               <pre
                 class="mb-4 overflow-auto rounded border border-gray-200 bg-gray-100 p-2 text-sm dark:border-gray-700 dark:bg-gray-900"
-                >{{ errorDetails.message }}</pre
+                >{{ errorDetails.stack }}</pre
               >
+            </template>
 
-              <template v-if="errorDetails.stack">
-                <h4 class="mb-2 font-medium">堆栈跟踪</h4>
-                <pre
-                  class="mb-4 overflow-auto rounded border border-gray-200 bg-gray-100 p-2 text-sm dark:border-gray-700 dark:bg-gray-900"
-                  >{{ errorDetails.stack }}</pre
-                >
-              </template>
-
-              <template v-if="errorDetails.componentInfo">
-                <h4 class="mb-2 font-medium">组件信息</h4>
-                <pre
-                  class="overflow-auto rounded border border-gray-200 bg-gray-100 p-2 text-sm dark:border-gray-700 dark:bg-gray-900"
-                  >{{ errorDetails.componentInfo }}</pre
-                >
-              </template>
-            </div>
-          </el-collapse-item>
-        </el-collapse>
-      </div>
+            <template v-if="errorDetails.componentInfo">
+              <h4 class="mb-2 font-medium">组件信息</h4>
+              <pre
+                class="overflow-auto rounded border border-gray-200 bg-gray-100 p-2 text-sm dark:border-gray-700 dark:bg-gray-900"
+                >{{ errorDetails.componentInfo }}</pre
+              >
+            </template>
+          </div>
+        </el-collapse-item>
+      </el-collapse>
     </div>
   </div>
 </template>
