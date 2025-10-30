@@ -8,9 +8,9 @@
           appear
         >
           <keep-alive :include="[]" :max="10" v-if="!route.meta.noCache">
-            <component :is="Component" :key="route.path" />
+            <component :is="Component" :key="route.fullPath" />
           </keep-alive>
-          <component :is="Component" :key="route.path" v-else />
+          <component :is="Component" :key="route.fullPath" v-else />
         </transition>
       </router-view>
     </ErrorBoundary>
