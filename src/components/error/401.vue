@@ -7,4 +7,8 @@
 </template>
 <script lang="ts" setup>
 import { ElResult, ElButton } from 'element-plus'
+
+defineOptions({
+  name: 'no-401',
+})
 </script>

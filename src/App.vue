@@ -13,5 +13,6 @@ import ErrorBoundary from '@/components/Error/ErrorBoundary.vue'
 import RouterViewPro from '@/components/RouterViewPro/index.vue'
 import { useKeepAlive } from '@/hook/useKeepAlive'
 
+// 动态添加路由页面缓存
 useKeepAlive()
 </script>

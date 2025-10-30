@@ -7,4 +7,8 @@
 </template>
 <script lang="ts" setup>
 import { ElResult, ElButton } from 'element-plus'
+
+defineOptions({
+  name: 'not-fount',
+})
 </script>
