@@ -9,13 +9,17 @@
       </div>
     </div>
   </div>
-  <el-icon><Plus /></el-icon>
-  <el-icon><Sunny /></el-icon>
+  <div>
+    <el-icon><Plus /></el-icon>
+    <el-icon><Sunny /></el-icon>
+    <Icon name="jiaotan"></Icon>
+  </div>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { ElIcon } from 'element-plus'
+import Icon from '@/components/Icon/index.vue'
 
 // 为组件定义名称，用于keep-alive缓存
 defineOptions({
