@@ -1,24 +1,17 @@
 <template>
-  <el-config-provider :locale="zhCn">
-    <ErrorBoundary>
-      <router-view v-slot="{ Component, route }">
-        <transition
-          :name="(route.meta.transition as string) || 'el-fade-in-linear'"
-          mode="out-in"
-          appear
-        >
-          <keep-alive :include="[]" :max="10" v-if="!route.meta.noCache">
-            <component :is="Component" :key="route.fullPath" />
-          </keep-alive>
-          <component :is="Component" :key="route.fullPath" v-else />
-        </transition>
-      </router-view>
-    </ErrorBoundary>
-  </el-config-provider>
+  <ErrorBoundary>
+    <el-config-provider :locale="zhCn">
+      <RouterViewPro />
+    </el-config-provider>
+  </ErrorBoundary>
 </template>
 
 <script setup lang="ts">
 import { ElConfigProvider } from 'element-plus'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
-import ErrorBoundary from '@/components/error/ErrorBoundary.vue'
+import ErrorBoundary from '@/components/Error/ErrorBoundary.vue'
+import RouterViewPro from '@/components/RouterViewPro/index.vue'
+import { useKeepAlive } from '@/hook/useKeepAlive'
+
+useKeepAlive()
 </script>
