@@ -1,6 +1,6 @@
 @import url('element-plus/dist/index.css');
 
-/* 亮色定制化 - 绿色主题 */
+/* 亮色定制化- css变量定制化位置 - 绿色主题 */
 :root {
   /* 主色 */
   --el-color-primary: #4caf50 !important;

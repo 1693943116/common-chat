@@ -2,7 +2,8 @@ import typography from '@tailwindcss/typography'
 import aspectRatio from '@tailwindcss/aspect-ratio'
 import lineClamp from '@tailwindcss/line-clamp'
 import tailwindcssAnimate from 'tailwindcss-animate'
-import scrollbar from 'tailwindcss-scrollbar'
+import tailwindScrollbar from 'tailwind-scrollbar'
+import tailwindcssNesting from '@tailwindcss/nesting'
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -25,6 +26,8 @@ export default {
     // 动画插件
     tailwindcssAnimate,
     // 滚动条插件 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100
-    scrollbar,
+    tailwindScrollbar({ nocompatible: true }),
+    // 嵌套css
+    tailwindcssNesting,
   ],
 }

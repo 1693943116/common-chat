@@ -1,5 +1,8 @@
 <template>
-  <div class="menu-container" :class="[mode, theme]">
+  <div
+    class="scrollbar-elegant h-full w-full overflow-y-auto overflow-x-hidden"
+    :class="[mode, theme]"
+  >
     <el-menu
       :default-active="activeMenu"
       router
@@ -8,9 +11,10 @@
       :ellipsis="ellipsis"
       :unique-opened="false"
       :class="theme"
+      :default-openeds="openedSubMenus"
     >
       <template v-for="route in menuRoutes" :key="route.path">
-        <sub-menu :route="route" />
+        <sub-menu :route="route" :mode="mode" />
       </template>
     </el-menu>
   </div>
@@ -41,6 +45,25 @@ const isCollapse = computed(() => mode === 'vertical' && collapse)
 const ellipsis = computed(() => mode === 'horizontal')
 const activeMenu = computed(() => route.path)
 
+// 根据当前路径计算需要展开的子菜单
+const openedSubMenus = computed(() => {
+  // 水平模式下不需要预先展开子菜单，因为顶级菜单会直接显示
+  if (mode === 'horizontal') {
+    return []
+  }
+
+  const paths = route.path.split('/')
+  const result: string[] = []
+
+  let currentPath = ''
+  for (let i = 1; i < paths.length - 1; i++) {
+    currentPath += '/' + paths[i]
+    result.push(currentPath)
+  }
+
+  return result
+})
+
 const filterHiddenRoutes = (routes: RouteRecordRaw[]) => {
   return routes.filter((route) => {
     return !(route?.meta?.hidden === true)
@@ -68,59 +91,41 @@ const menuRoutes = computed(() => {
 </script>
 
 <style scoped>
-.menu-container {
-  height: 100%;
-  width: 100%;
-}
-
-.menu-container.vertical {
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
-.menu-container.horizontal {
-  width: 100%;
-}
-
 /* 亮色主题 */
-.menu-container.light :deep(.el-menu) {
+.light :deep(.el-menu) {
   --el-menu-bg-color: #ffffff;
   --el-menu-text-color: #303133;
-  --el-menu-hover-bg-color: #f0f5ff;
+  --el-menu-hover-bg-color: #0000000f;
   --el-menu-active-color: var(--el-color-primary);
-  border-right: 1px solid #e6e6e6;
-  padding: 6px;
 }
 
 /* 暗色主题 */
-.menu-container.dark :deep(.el-menu) {
+.dark :deep(.el-menu) {
   --el-menu-bg-color: #1f2937;
   --el-menu-text-color: #e5e7eb;
   --el-menu-hover-bg-color: #2d3748;
   --el-menu-active-color: var(--el-color-primary-light-3);
-  border-right: 1px solid #374151;
-  padding: 6px;
 }
 
 /* 菜单项基本样式 */
-.menu-container :deep(.el-menu) {
-  border-right: none;
+:deep(.el-menu) {
+  border-right: none !important;
+  border-bottom: none !important;
 }
 
-/* 移除菜单项默认样式 */
-.menu-container :deep(.el-menu-item.is-active) {
-  border-left: none;
-  background-color: transparent; /* 移除默认背景色，使用SubMenu中的自定义样式 */
+:deep(.el-menu-item.is-active) {
+  background-color: var(--el-color-primary-light-7);
 }
 
-/* 子菜单样式 */
-.menu-container :deep(.el-menu--inline) {
-  padding-left: 0;
-  background: transparent;
+/* 水平模式特殊样式 */
+.horizontal :deep(.el-menu--horizontal) {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-/* 折叠状态下的菜单样式 */
-.menu-container :deep(.el-menu--collapse) {
-  width: 64px;
+.horizontal :deep(.el-menu--horizontal > .el-menu-item),
+.horizontal :deep(.el-menu--horizontal > .el-sub-menu) {
+  height: 60px;
+  line-height: 60px;
 }
 </style>
