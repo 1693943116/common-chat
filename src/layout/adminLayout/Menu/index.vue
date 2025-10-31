@@ -14,7 +14,7 @@
       :default-openeds="openedSubMenus"
     >
       <template v-for="route in menuRoutes" :key="route.path">
-        <sub-menu :route="route" :mode="mode" />
+        <sub-menu :route="route" />
       </template>
     </el-menu>
   </div>
