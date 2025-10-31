@@ -8,6 +8,7 @@
 2. 支持任意层级的菜单嵌套
 3. 支持水平（horizontal）和垂直（vertical）两种布局模式
 4. 支持亮色（light）和暗色（dark）两种主题
+5. 自动处理菜单展开状态，避免路由跳转时菜单闪烁
 
 ## 使用方法
 
@@ -142,6 +143,59 @@ import AdminMenu from '@/layout/adminLayout/Menu/index.vue'
   ]
 }
 ```
+
+## 技术原理
+
+### 菜单路由集成
+
+菜单组件通过 `router` 属性与 Vue Router 集成，实现自动路由导航功能：
+
+```vue
+<el-menu
+  :default-active="activeMenu"
+  router
+  :collapse="isCollapse"
+  :mode="mode"
+  :ellipsis="ellipsis"
+  :unique-opened="false"
+  :class="theme"
+  :default-openeds="openedSubMenus"
+></el-menu>
+```
+
+### 菜单展开状态处理
+
+组件使用 `default-openeds` 属性和计算属性 `openedSubMenus` 来处理菜单的展开状态：
+
+```js
+// 根据当前路径计算需要展开的子菜单
+const openedSubMenus = computed(() => {
+  // 水平模式下不需要预先展开子菜单，因为顶级菜单会直接显示
+  if (mode === 'horizontal') {
+    return []
+  }
+
+  const paths = route.path.split('/')
+  const result: string[] = []
+
+  let currentPath = ''
+  for (let i = 1; i < paths.length - 1; i++) {
+    currentPath += '/' + paths[i]
+    result.push(currentPath)
+  }
+
+  return result
+})
+```
+
+这确保了在路由导航时，菜单能够保持正确的展开状态，避免了菜单闪烁问题。
+
+### 水平与垂直模式
+
+组件支持两种布局模式：
+
+1. **垂直模式（vertical）**：适合左侧导航栏，支持折叠功能
+2. **水平模式（horizontal）**：适合顶部导航栏，自动处理子菜单弹出样式
 
 ## 与主题系统集成
 
